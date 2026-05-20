@@ -115,8 +115,7 @@ if (is_array($_POST) && count($_POST))
             <div class="form-text">* is a required field</div>
         </div>
         <div>
-
-            <button class="btn btn-primary" type="submit" name="btn-sender-schicken" >Schicken</button>
+            <button class="btn btn-primary" type="submit" name="btn-senden" >Senden</button>
         </div>
     </form>
 </div>

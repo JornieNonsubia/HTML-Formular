@@ -30,14 +30,14 @@ try {
 <div>
 <?php echo $EmailAnrede; ?> <?php echo $EmailSenderName?>
 <br/>
-Ihre E-Mail hat an <?php echo $EmailSenderMailbox; ?> geschikt.
+    Ihre E-Mail wurde an <b><?php echo $EmailSenderMailbox; ?></b> gesendet.
 <br/>
 Ihre Nachricht lautet:<br/>
 "<?php echo $EmailSenderNachricht; ?>"
 <br/><br/>
-    Vielen Dank fuer Nutzung unsere tolle E-Mail Service.
+    Vielen Dank für die Nutzung unseres tollen E-Mail-Services.
     <br/>
-    <a href="index.php">Schreib neue E-Mail?</a>
+    <a href="index.php">Neue E-Mail schreiben?</a>
 </div>
 
 </body>
