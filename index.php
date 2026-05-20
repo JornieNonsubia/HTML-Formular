@@ -1,3 +1,43 @@
+<?php
+
+$isDataInvalid = false;
+
+function ValidateEmailInputs($inputs)
+{
+
+    $errors=[];
+
+    if(empty(trim($inputs["sender-name"]??false)))
+        $errors['sender-name'] = "Name invalid";
+    else
+        $_SESSION["sender-name"] = filter_var($inputs['sender-name'],FILTER_SANITIZE_SPECIAL_CHARS);
+    if(!filter_var($inputs["sender-email"]??false, FILTER_VALIDATE_EMAIL, FILTER_SANITIZE_SPECIAL_CHARS))
+        $errors['sender-email'] = "E-Mail invalid";
+    else
+        $_SESSION["sender-email"] = filter_var($inputs['sender-email'],FILTER_SANITIZE_SPECIAL_CHARS);
+    if(empty(trim($inputs["sender-nachricht"]??false)))
+        $errors['sender-nachricht'] = "Message invalid";
+    else
+        $_SESSION["sender-nachricht"] = filter_var($inputs['sender-nachricht'],FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $_SESSION['anrede'] = filter_var($_POST["anrede"]??"");
+
+    return $errors;
+}
+
+if (is_array($_POST) && count($_POST))
+{
+    session_start();
+    $errors = ValidateEmailInputs($_POST);
+    if(!count($errors))
+    {
+        header("Location: email-geschikt.php");
+        exit();
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,8 +79,10 @@
 </head>
 <body>
 
+
 <div id="div-email-form" class="pe-4 pt-4 ps-4">
-    <form action="Email-geschikt.php" method="post" name="email-schicken-form">
+
+    <form action="index.php" method="post" name="email-schicken-form">
         <div class="mb-3">
             <div class ="form-check-label form-check-inline">Anrede:</div>
             <div class="form-check form-check-inline">
@@ -55,18 +97,25 @@
         <div class="mb-3">
             <label class="form-label" for="sender-name">Name*</label>
             <br/>
-            <input class="form-control" type="text" id="sender-name" name="sender-name" placeholder="Max Mustermann" required>
+            <input class="form-control" type="text" id="sender-name" name="sender-name" placeholder="Max Mustermann" >
+            <?php if ($errors['sender-name']??false) echo '<span class="text-danger small">'.$errors['sender-name'].'</span>';
+            ?>
         </div>
         <div class="mb-3">
             <label class="form-label" for="sender-email" >Email*</label><br/>
-            <input class="form-control" type="email" id="sender-email" name="sender-email" placeholder="ihre@email.com" required>
+            <input class="form-control" type="email" id="sender-email" name="sender-email" placeholder="ihre@email.com">
+            <?php if ($errors['sender-email']??false) echo '<span class="text-danger small">'.$errors['sender-email'].'</span>';
+            ?>
         </div>
         <div class="mb-3">
             <label class="form-label" for="sender-nachricht" >Nachricht*</label><br/>
-            <textarea class="form-control" id="sender-nachricht" name="sender-nachricht" placeholder="Schreiben Ihre E-mail hier." required></textarea>
+            <textarea class="form-control" id="sender-nachricht" name="sender-nachricht" placeholder="Schreiben Ihre E-mail hier."></textarea>
+            <?php if ($errors['sender-nachricht']??false) echo '<span class="text-danger small">'.$errors['sender-nachricht'].'</span>';
+            ?>
             <div class="form-text">* is a required field</div>
         </div>
         <div>
+
             <button class="btn btn-primary" type="submit" name="btn-sender-schicken" >Schicken</button>
         </div>
     </form>
