@@ -8,15 +8,15 @@ function ValidateEmailInputs($inputs)
     $errors=[];
 
     if(empty(trim($inputs["sender-name"]??false)))
-        $errors['sender-name'] = "Name invalid";
+        $errors['sender-name'] = "Name ist ungültig";
     else
         $_SESSION["sender-name"] = filter_var($inputs['sender-name'],FILTER_SANITIZE_SPECIAL_CHARS);
     if(!filter_var($inputs["sender-email"]??false, FILTER_VALIDATE_EMAIL, FILTER_SANITIZE_SPECIAL_CHARS))
-        $errors['sender-email'] = "E-Mail invalid";
+        $errors['sender-email'] = "E-Mail ist ungültig";
     else
         $_SESSION["sender-email"] = filter_var($inputs['sender-email'],FILTER_SANITIZE_SPECIAL_CHARS);
     if(empty(trim($inputs["sender-nachricht"]??false)))
-        $errors['sender-nachricht'] = "Message invalid";
+        $errors['sender-nachricht'] = "Message ist ungültig";
     else
         $_SESSION["sender-nachricht"] = filter_var($inputs['sender-nachricht'],FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -43,7 +43,7 @@ if (is_array($_POST) && count($_POST))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>E-mail Schiker</title>
+    <title>E-mail Service</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <style>
@@ -112,7 +112,7 @@ if (is_array($_POST) && count($_POST))
             <textarea class="form-control" id="sender-nachricht" name="sender-nachricht" placeholder="Schreiben Ihre E-mail hier."></textarea>
             <?php if ($errors['sender-nachricht']??false) echo '<span class="text-danger small">'.$errors['sender-nachricht'].'</span>';
             ?>
-            <div class="form-text">* is a required field</div>
+            <div class="form-text">* ist ein Pflichtfeld</div>
         </div>
         <div>
             <button class="btn btn-primary" type="submit" name="btn-senden" >Senden</button>
