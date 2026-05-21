@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Aufgabe 2</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
     <style>
@@ -47,6 +49,9 @@
         .border-shapeblau {
             border-color: var(--colors--shapeblau) !important;
         }
+        .bs-solid{
+         border-style: solid;
+        }
 
         .card-image-icon {
             height: 1.2em;
@@ -84,7 +89,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-2">
                         <span class="small">FÜHRUNG</span>
-                        <span class="small border rounded border-shapeblau">Datum: 25.02.2026</span>
+                        <span class="small border-shapeorange bs-solid border-2 rounded">Datum: 25.02.2026</span>
                     </div>
                     <h5 class="card-title mb-3">Reguläre Kräuterwanderung</h5>
                     <div class="d-flex align-items-center mb-2">
